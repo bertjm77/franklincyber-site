@@ -22,8 +22,12 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      # (Optional) These OIDC helper steps are not required when using the API token,
+      # but leaving them since you had them already.
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
+
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
@@ -32,16 +36,23 @@ jobs:
                const coredemo = require('@actions/core')
                return await coredemo.getIDToken()
            result-encoding: string
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MEADOW_07C0FA20F }}
           action: "upload"
-          app_location: "/"     # Root of your site
-          api_location: ""      # No API
-          output_location: "/"  # Serve content directly from app_location
-          skip_app_build: true  # ✅ Tells SWA: no build step, just upload as-is
+
+          # Serve directly from repo root (no build)
+          app_location: "/"     # folder containing index.html and your site files
+          output_location: "/"  # treat app_location as the final site output
+          skip_app_build: true  # ← skip Oryx and any Node build entirely
+
+          # No API for now
+          api_location: ""
+
+          # (Optional) present for your original workflow; not required with API token
           github_id_token: ${{ steps.idtoken.outputs.result }}
 
   close_pull_request_job:
