@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="gradSteel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b7c3e0"/>
+      <stop offset="50%" stop-color="#e8eefc"/>
+      <stop offset="100%" stop-color="#9aa6c3"/>
+    </linearGradient>
+    <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#61dafb"/>
+      <stop offset="100%" stop-color="#8be9fd"/>
+    </linearGradient>
+    <radialGradient id="gradCenter" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#61dafb" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#0a1224" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Subtle dark base -->
+  <circle cx="256.0" cy="256.0" r="250" fill="transparent"/>
+
+  <!-- Three interlocking arms -->
+  <g transform="rotate(-90,256.0,256.0)">
+    <path d="M 436.00,256.00 L 433.27,287.26 L 425.14,317.56 L 411.88,346.00 L 393.89,371.70 L 371.70,393.89 L 346.00,411.88 L 317.56,425.14 L 287.26,433.27 L 256.00,436.00 L 224.74,433.27 L 194.44,425.14 L 166.00,411.88 L 140.30,393.89 L 118.11,371.70 L 100.12,346.00 L 86.86,317.56 L 78.73,287.26 L 76.00,256.00 L 196.00,256.00 L 196.91,266.42 L 199.62,276.52 L 204.04,286.00 L 210.04,294.57 L 217.43,301.96 L 226.00,307.96 L 235.48,312.38 L 245.58,315.09 L 256.00,316.00 L 266.42,315.09 L 276.52,312.38 L 286.00,307.96 L 294.57,301.96 L 301.96,294.57 L 307.96,286.00 L 312.38,276.52 L 315.09,266.42 L 316.00,256.00 Z" fill="url(#gradSteel)" stroke="url(#gradBlue)" stroke-width="3" opacity="0.9"/>
+<path d="M 166.00,411.88 L 140.30,393.89 L 118.11,371.70 L 100.12,346.00 L 86.86,317.56 L 78.73,287.26 L 76.00,256.00 L 78.73,224.74 L 86.86,194.44 L 100.12,166.00 L 118.11,140.30 L 140.30,118.11 L 166.00,100.12 L 194.44,86.86 L 224.74,78.73 L 256.00,76.00 L 287.26,78.73 L 317.56,86.86 L 346.00,100.12 L 286.00,204.04 L 276.52,199.62 L 266.42,196.91 L 256.00,196.00 L 245.58,196.91 L 235.48,199.62 L 226.00,204.04 L 217.43,210.04 L 210.04,217.43 L 204.04,226.00 L 199.62,235.48 L 196.91,245.58 L 196.00,256.00 L 196.91,266.42 L 199.62,276.52 L 204.04,286.00 L 210.04,294.57 L 217.43,301.96 L 226.00,307.96 Z" fill="url(#gradSteel)" stroke="url(#gradBlue)" stroke-width="3" opacity="0.9"/>
+<path d="M 166.00,100.12 L 194.44,86.86 L 224.74,78.73 L 256.00,76.00 L 287.26,78.73 L 317.56,86.86 L 346.00,100.12 L 371.70,118.11 L 393.89,140.30 L 411.88,166.00 L 425.14,194.44 L 433.27,224.74 L 436.00,256.00 L 433.27,287.26 L 425.14,317.56 L 411.88,346.00 L 393.89,371.70 L 371.70,393.89 L 346.00,411.88 L 286.00,307.96 L 294.57,301.96 L 301.96,294.57 L 307.96,286.00 L 312.38,276.52 L 315.09,266.42 L 316.00,256.00 L 315.09,245.58 L 312.38,235.48 L 307.96,226.00 L 301.96,217.43 L 294.57,210.04 L 286.00,204.04 L 276.52,199.62 L 266.42,196.91 L 256.00,196.00 L 245.58,196.91 L 235.48,199.62 L 226.00,204.04 Z" fill="url(#gradSteel)" stroke="url(#gradBlue)" stroke-width="3" opacity="0.9"/>
+  </g>
+
+  <!-- Center glowing node -->
+  <circle cx="256.0" cy="256.0" r="40" fill="url(#gradCenter)" stroke="url(#gradBlue)" stroke-width="3"/>
+  <circle cx="256.0" cy="256.0" r="10" fill="#61dafb"/>
+
+  <!-- Outer halo ring -->
+  <circle cx="256.0" cy="256.0" r="240" stroke="url(#gradBlue)" stroke-width="2" opacity="0.3" fill="none"/>
+</svg>
