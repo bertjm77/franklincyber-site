@@ -292,3 +292,33 @@ ul.checklist li::after{
   margin: 0;
   padding: 0;
 }
+/* --- Fix: mobile menu should be hidden by default --- */
+@media (max-width: 880px){
+  .site-nav .nav-list{
+    display: none !important;
+    position: absolute;
+    right: 16px; top: 64px;
+    flex-direction: column;
+    background: var(--fc-surface);
+    border: 1px solid var(--fc-border);
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: var(--fc-shadow);
+  }
+  /* Show when toggled (your JS adds .open and aria-expanded="true") */
+  .site-nav .nav-list.open,
+  .site-nav .nav-toggle[aria-expanded="true"] + .nav-list{
+    display: flex !important;
+  }
+}
+
+/* --- Desktop-only layout for the longer menu --- */
+@media (min-width: 881px){
+  .site-nav .nav-list{
+    display: flex !important;
+    position: static;           /* ensure it's back in the flow on desktop */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: clamp(10px, 1.8vw, 24px);
+  }
+}
