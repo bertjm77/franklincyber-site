@@ -292,37 +292,3 @@ ul.checklist li::after{
   margin: 0;
   padding: 0;
 }
-
-/* Tweak link sizing for better balance */
-.site-nav a {
-  font-size: 0.94rem;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  padding: 4px 2px;
-  color: var(--fc-text);
-  text-decoration: none;
-  opacity: 0.95;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-.site-nav a:hover,
-.site-nav a:focus {
-  color: var(--fc-accent-2);
-  opacity: 1;
-}
-
-/* Keep header sticky and visually compact */
-.site-header {
-  padding-block: 6px;
-}
-
-/* Give a bit more space when logo + nav share a row */
-@media (min-width: 960px) {
-  .brand { flex: 1 0 auto; }
-  .site-nav { flex: 2 0 auto; text-align: right; }
-}
-
-/* Ensure mobile toggle spacing remains solid */
-@media (max-width: 880px) {
-  .header-inner { flex-wrap: nowrap; }
-}
-
