@@ -1,6 +1,6 @@
-/* ===============================
-   FranklinCyber — Core Theme
-   =============================== */
+/* =========================================================
+   FranklinCyber v3.5 — Unified Theme (Dark-first, Light-ready)
+   ========================================================= */
 :root{
   --fc-bg: #0a1224;          /* page background (deep navy) */
   --fc-bg-alt: #0e1933;      /* section alt background */
@@ -8,10 +8,10 @@
   --fc-border: rgba(255,255,255,.08);
   --fc-text: #e8eefc;
   --fc-text-muted: #b7c3e0;
-  --fc-accent: #61dafb;      /* subtle electric blue */
-  --fc-accent-2: #8be9fd;    /* lighter accent for hovers */
+  --fc-accent: #61dafb;      /* electric-blue accent */
+  --fc-accent-2: #8be9fd;    /* lighter accent for hover */
   --fc-success: #8be78b;
-  --fc-shadow: 0 10px 30px rgba(0,0,0,.35);
+  --fc-shadow: 0 12px 28px rgba(3,8,20,.25);
   --radius: 18px;
   --radius-lg: 22px;
   --gap: clamp(16px, 3vw, 28px);
@@ -24,27 +24,23 @@ html,body{height:100%}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
   color: var(--fc-text);
-  background: radial-gradient(1200px 800px at 70% -10%, #12224a 0%, transparent 60%) no-repeat,
-              linear-gradient(180deg, #081225 0%, #0a1224 35%, #0a1224 100%);
+  background:
+    radial-gradient(1200px 800px at 70% -10%, #12224a 0%, transparent 60%) no-repeat,
+    linear-gradient(180deg, #081225 0%, #0a1224 35%, #0a1224 100%);
 }
 
-/* ===============================
-   A11y
-   =============================== */
+/* Accessibility */
 .skip-link{
   position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
 .skip-link:focus{
   left: 16px; top: 12px; width:auto; height:auto; padding:.5rem .75rem;
-  background:#fff; color:#000; border-radius:8px; z-index:1000;
-  box-shadow: var(--focus);
+  background:#fff; color:#000; border-radius:8px; z-index:1000; box-shadow: var(--focus);
 }
 
-/* ===============================
-   Layout
-   =============================== */
+/* Containers & sections */
 .container{ width: var(--container); margin-inline:auto; }
 .section{ padding-block: clamp(48px, 8vw, 96px); }
 .section.pad{ padding-block: clamp(60px, 9vw, 120px); }
@@ -58,53 +54,65 @@ body{
   .two-col{ grid-template-columns: 1fr; }
 }
 
-/* ===============================
-   Header / Nav
-   =============================== */
+/* =========================================================
+   Header / Navigation
+   ========================================================= */
 .site-header{
   position:sticky; top:0; z-index:50;
   backdrop-filter:saturate(140%) blur(8px);
   background: linear-gradient(180deg, rgba(16,27,56,.85), rgba(16,27,56,.65));
   border-bottom:1px solid var(--fc-border);
+  padding-block: 6px;
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between;
-  padding: 14px 0;
+  flex-wrap: wrap;
+  gap: clamp(10px, 2vw, 24px);
+  padding-inline: clamp(10px, 3vw, 20px);
 }
-.brand{ display:flex; align-items:center; gap:12px; }
+.brand{ display:flex; align-items:center; gap:12px; flex:1 0 auto; }
 .logo{ width:36px; height:36px; display:block; }
 .brand-text{ font-weight:700; letter-spacing:.2px; }
 .brand-text .accent{ color: var(--fc-accent); }
 .tm{ font-size:.65em; vertical-align:super; margin-left:1px; opacity:.8; }
 
+.site-nav{ flex:2 0 auto; text-align:right; position:relative; }
 .site-nav .nav-toggle{
-  display:none;
-  background:transparent; color:var(--fc-text); border:1px solid var(--fc-border);
-  padding:.55rem .75rem; border-radius:12px;
+  display:none; appearance:none; cursor:pointer;
+  background:transparent; color:var(--fc-text);
+  border:1px solid var(--fc-border); padding:.55rem .75rem; border-radius:12px;
 }
 .site-nav .nav-list{
-  display:flex; gap: clamp(12px, 2.2vw, 28px); list-style:none; margin:0; padding:0;
+  /* Desktop default — see media queries for mobile override */
+  display:flex; flex-wrap:wrap; justify-content:flex-end;
+  gap: clamp(10px, 1.8vw, 24px);
+  list-style:none; margin:0; padding:0;
 }
 .site-nav a{
-  color:var(--fc-text); text-decoration:none; font-weight:500; opacity:.9;
+  color:var(--fc-text); text-decoration:none; font-weight:600; letter-spacing:.2px;
+  font-size: 0.94rem; padding: 4px 2px; opacity:.95; transition: color .2s, opacity .2s;
 }
-.site-nav a:hover,.site-nav a:focus{ color: var(--fc-accent-2); }
+.site-nav a:hover,.site-nav a:focus{ color: var(--fc-accent-2); opacity:1; }
 
+/* Mobile nav behavior (hidden by default, toggled with .open) */
 @media (max-width: 880px){
-  .site-nav .nav-toggle{ display:block; }
+  .site-nav .nav-toggle{ display:inline-flex; align-items:center; }
   .site-nav .nav-list{
-    position:absolute; right:16px; top:64px;
-    flex-direction:column; background:var(--fc-surface);
-    border:1px solid var(--fc-border); border-radius:14px; padding:12px;
-    box-shadow: var(--fc-shadow);
-    display:none;
+    display:none; /* hidden by default on mobile */
+    position:absolute; right:16px; top:54px;
+    flex-direction:column; justify-content:flex-start; flex-wrap:nowrap;
+    background: var(--fc-surface);
+    border:1px solid var(--fc-border);
+    border-radius:14px; padding:12px; box-shadow: var(--fc-shadow);
+    min-width: 210px;
   }
-  .site-nav .nav-list[data-open="true"]{ display:flex; }
+  .site-nav .nav-list.open,
+  .site-nav .nav-toggle[aria-expanded="true"] + .nav-list{ display:flex; }
 }
 
-/* ===============================
+/* =========================================================
    Hero
-   =============================== */
+   ========================================================= */
 .hero{
   background:
     radial-gradient(600px 320px at 15% -10%, rgba(139,233,253,.18), transparent 65%),
@@ -130,15 +138,15 @@ body{
 .btn.ghost{ background: transparent; border-color: var(--fc-border); color: var(--fc-text); }
 .btn.ghost:hover{ border-color: var(--fc-accent); color: var(--fc-accent-2); }
 
-/* ===============================
-   Cards / Typography helpers
-   =============================== */
+/* =========================================================
+   Cards & Typographic helpers
+   ========================================================= */
 .card{
   background: var(--fc-surface);
   border:1px solid var(--fc-border);
   border-radius: var(--radius);
   padding: clamp(14px, 2.2vw, 20px);
-  box-shadow: 0 12px 28px rgba(3,8,20,.25);
+  box-shadow: var(--fc-shadow);
 }
 .callout{ border-left: 3px solid var(--fc-accent); }
 .mini-brand{ display:flex; align-items:center; gap:10px; }
@@ -162,9 +170,9 @@ ul.checklist li::after{
   border-left:2px solid var(--fc-success); border-bottom:2px solid var(--fc-success); transform: rotate(-45deg);
 }
 
-/* ===============================
-   Triskelion System Grid
-   =============================== */
+/* =========================================================
+   Private Intelligence Stack grid (formerly Triskelion)
+   ========================================================= */
 .triskelion-grid{
   display:grid; gap: var(--gap);
   grid-template-columns: repeat(4, 1fr);
@@ -188,9 +196,9 @@ ul.checklist li::after{
     var(--fc-surface);
 }
 
-/* ===============================
-   Vault band (subtle visual anchor)
-   =============================== */
+/* =========================================================
+   Vault visual band
+   ========================================================= */
 .vault-band{
   background:
     radial-gradient(800px 500px at 120% 10%, rgba(97,218,251,.08), transparent 60%),
@@ -201,25 +209,23 @@ ul.checklist li::after{
 .vault-card{ display:flex; flex-direction:column; align-items:center; text-align:center; }
 .vault-img{ width: 120px; height:auto; margin: 6px auto 10px; opacity:.95; display:block; }
 
-/* ===============================
-   “Why Privacy” shield card
-   =============================== */
-.shield-card{
-  display:flex; align-items:center; gap:12px;
-}
+/* =========================================================
+   Why Privacy — shield card
+   ========================================================= */
+.shield-card{ display:flex; align-items:center; gap:12px; }
 .shield-emoji{ font-size: 32px; }
 
-/* ===============================
+/* =========================================================
    Contact
-   =============================== */
+   ========================================================= */
 .contact-wide{ padding: clamp(18px, 3vw, 26px); }
 .contact-list{ list-style:none; padding:0; margin:0; display:grid; gap:10px; }
 .contact-list li{ display:flex; gap:10px; }
 .contact-list li span{ min-width:72px; color: var(--fc-text-muted); }
 
-/* ===============================
+/* =========================================================
    Footer
-   =============================== */
+   ========================================================= */
 .site-footer{
   margin-top: clamp(32px, 6vw, 64px);
   background: linear-gradient(180deg, rgba(3,8,20,.0), rgba(3,8,20,.6));
@@ -235,24 +241,17 @@ ul.checklist li::after{
 .footer-links a{ color: var(--fc-text-muted); text-decoration:none; }
 .footer-links a:hover{ color: var(--fc-accent-2); }
 
-/* ===============================
-   JS hook (no framework) for mobile nav
-   =============================== */
-@media (max-width: 880px){
-  .site-nav .nav-toggle[aria-expanded="true"] + .nav-list{ display:flex; }
-}
-
-/* ===============================
-   Motion preferences
-   =============================== */
+/* =========================================================
+   Motion / Accessibility preferences
+   ========================================================= */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto }
   .btn{ transition: none }
 }
 
-/* ===============================
-   Optional: color-scheme support
-   =============================== */
+/* =========================================================
+   Optional Light Mode
+   ========================================================= */
 @media (prefers-color-scheme: light){
   :root{
     --fc-bg: #f7f9ff;
@@ -264,61 +263,12 @@ ul.checklist li::after{
     --fc-shadow: 0 10px 24px rgba(0,12,32,.08);
   }
   body{
-    background: radial-gradient(1200px 800px at 70% -10%, #dbe9ff 0%, transparent 60%) no-repeat,
-                linear-gradient(180deg, #f7f9ff 0%, #f7f9ff 100%);
+    background:
+      radial-gradient(1200px 800px at 70% -10%, #dbe9ff 0%, transparent 60%) no-repeat,
+      linear-gradient(180deg, #f7f9ff 0%, #f7f9ff 100%);
   }
   .site-header{
     background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
     border-bottom:1px solid var(--fc-border);
-  }
-}
-
-/* === FranklinCyber v3.5 Navigation Refinements === */
-
-/* Slightly tighter logo padding so long menus fit */
-.header-inner {
-  flex-wrap: wrap;
-  gap: clamp(10px, 2vw, 24px);
-  padding-inline: clamp(10px, 3vw, 20px);
-}
-
-/* Let nav list flex and wrap gracefully on large screens */
-.site-nav .nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: clamp(10px, 1.8vw, 24px);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-/* --- Fix: mobile menu should be hidden by default --- */
-@media (max-width: 880px){
-  .site-nav .nav-list{
-    display: none !important;
-    position: absolute;
-    right: 16px; top: 64px;
-    flex-direction: column;
-    background: var(--fc-surface);
-    border: 1px solid var(--fc-border);
-    border-radius: 14px;
-    padding: 12px;
-    box-shadow: var(--fc-shadow);
-  }
-  /* Show when toggled (your JS adds .open and aria-expanded="true") */
-  .site-nav .nav-list.open,
-  .site-nav .nav-toggle[aria-expanded="true"] + .nav-list{
-    display: flex !important;
-  }
-}
-
-/* --- Desktop-only layout for the longer menu --- */
-@media (min-width: 881px){
-  .site-nav .nav-list{
-    display: flex !important;
-    position: static;           /* ensure it's back in the flow on desktop */
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: clamp(10px, 1.8vw, 24px);
   }
 }
