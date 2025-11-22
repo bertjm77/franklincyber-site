@@ -2,21 +2,18 @@
    FranklinCyber v3.5 — Unified Theme (Dark-first, Light-ready)
    ========================================================= */
 :root{
-  --fc-bg: #0a1224;          /* page background (deep navy) */
-  --fc-bg-alt: #0e1933;      /* section alt background */
-  --fc-surface: #101b38;     /* cards/nav surfaces */
+  --fc-bg: #0A1F44;
+  --fc-bg-alt: #0D274F;
+  --fc-surface: #111D3F;
   --fc-border: rgba(255,255,255,.08);
-  --fc-text: #e8eefc;
-  --fc-text-muted: #b7c3e0;
-  --fc-accent: #61dafb;      /* electric-blue accent */
-  --fc-accent-2: #8be9fd;    /* lighter accent for hover */
-  --fc-success: #8be78b;
-  --fc-shadow: 0 12px 28px rgba(3,8,20,.25);
+  --fc-text: #E0E0E0;
+  --fc-text-muted: #B7C3E0;
+  --fc-accent: #00B4D8;
+  --fc-accent-2: #48CAE4;
+  --fc-success: #8BE78B;
+  --fc-shadow: 0 12px 28px rgba(3,8,20,.45);
   --radius: 18px;
   --radius-lg: 22px;
-  --gap: clamp(16px, 3vw, 28px);
-  --container: min(1120px, 92vw);
-  --focus: 0 0 0 3px rgba(97,218,251,.35), 0 0 0 6px rgba(97,218,251,.18);
 }
 
 *{box-sizing:border-box}
@@ -137,6 +134,8 @@ body{
 .btn.primary:hover{ transform: translateY(-1px); }
 .btn.ghost{ background: transparent; border-color: var(--fc-border); color: var(--fc-text); }
 .btn.ghost:hover{ border-color: var(--fc-accent); color: var(--fc-accent-2); }
+.btn.tertiary{ background:transparent; border:none; padding-inline:0; padding-block:0.4rem; color:var(--fc-accent); font-weight:600; }
+.btn.tertiary:hover{ color:var(--fc-accent-2); transform:none; }
 
 /* =========================================================
    Cards & Typographic helpers
